@@ -73,6 +73,14 @@ namespace api_counter.wwwapi.Controllers
         //TODO:  1. Write a controller method that increments the Value property of a counter of any given Id.
         //e.g.  with an Id=1  the Books counter Value should be increased from 5 to 6
         //return the counter you have increased
+        [HttpGet]
+        [Route("increase/{Id}")]
+        public async Task<IResult> Increment(int id)
+        {
+            var item = counters.FirstOrDefault(x => x.Id == id);
+            var increment =item.Value += id;
+            return TypedResults.Ok(increment);
+        }
 
 
         //Extension #2
